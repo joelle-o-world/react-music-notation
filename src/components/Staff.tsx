@@ -29,17 +29,19 @@ export const StaffContext = createContext({
   staffLeft: 0,
   staffRight: 0,
   spaceHeight: 1,
+  staffHeight: 4,
   yLine: (n: number) => n,
   ySpace: (n: number) => n + 1/2,
   yNote: (n: number) => n/2,
 })
 
-export const useStaffContext = () => useContext(StaffContext);
+export const useStaff = () => useContext(StaffContext);
 
 export const Staff: FunctionComponent<StaffProps> = ({top, bottom, left, right, children}) => {
 
   let spaceHeight = (bottom - top) / 4;
-  let yLine = (n: number) => top + n*spaceHeight;
+  let staffHeight = 4 * spaceHeight;
+  let yLine = (n: number) => bottom - n * spaceHeight;
   let ySpace = (n: number) => yLine(n) + spaceHeight / 2;
   let yNote = (n: number) => yLine(n/2);
 
@@ -56,6 +58,7 @@ export const Staff: FunctionComponent<StaffProps> = ({top, bottom, left, right, 
       staffBottom: bottom,
       staffLeft: left,
       staffRight: right,
+      staffHeight,
       spaceHeight,
       yLine, 
       ySpace,
