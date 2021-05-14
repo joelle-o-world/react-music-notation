@@ -26,6 +26,7 @@ export interface StaffProps {
 export const StaffContext = createContext({
   staffTop: 0,
   staffBottom: 4,
+  yCenter: 2,
   staffLeft: 0,
   staffRight: 0,
   spaceHeight: 1,
@@ -33,6 +34,8 @@ export const StaffContext = createContext({
   yLine: (n: number) => n,
   ySpace: (n: number) => n + 1/2,
   yNote: (n: number) => n/2,
+  noteheadWidth: 1,
+  noteheadHeight: 1,
 })
 
 export const useStaff = () => useContext(StaffContext);
@@ -56,10 +59,13 @@ export const Staff: FunctionComponent<StaffProps> = ({top, bottom, left, right, 
     <StaffContext.Provider value={{
       staffTop: top,
       staffBottom: bottom,
+      yCenter: (top + bottom) / 2,
       staffLeft: left,
       staffRight: right,
       staffHeight,
       spaceHeight,
+      noteheadHeight: spaceHeight * .9,
+      noteheadWidth: spaceHeight * .9,
       yLine, 
       ySpace,
       yNote,

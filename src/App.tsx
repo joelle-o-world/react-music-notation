@@ -4,13 +4,16 @@ import {BassClef} from './components/Clef'
 import {Notehead} from './components/Notehead';
 
 import './App.css';
+import {StandaloneNote} from './components/StandaloneNote';
 
 function App() {
   return (
     <div>
       <svg stroke="black" height="300px" width="500px">
         <Staff top={100} left={25} bottom={200} right={475}>
-          <BassClef />
+          <BassClef>
+            <StandaloneNote x={350} pitch={54}/>
+          </BassClef>
           <Notehead x={200} y={100} kind="square" />
           <Notehead x={250} y={100} kind="circle" />
           <Notehead x={300} y={100} kind="x" />
